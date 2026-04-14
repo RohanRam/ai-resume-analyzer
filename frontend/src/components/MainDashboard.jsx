@@ -29,8 +29,7 @@ const MainDashboard = ({ analysisResult, isLoading, user, onRequireLogin, showSa
   const { role, scores, insights, id } = analysisResult;
 
   const handleCopyLink = () => {
-      // In a real Vercel deployment, window.location.origin + /analysis/id
-      const shareUrl = `http://localhost:5173/analysis/${id}`;
+      const shareUrl = `${window.location.origin}/analysis/${id}`;
       navigator.clipboard.writeText(shareUrl);
       setCopyText('Copied!');
       setTimeout(() => setCopyText('Copy link'), 2000);
