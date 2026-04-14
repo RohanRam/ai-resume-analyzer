@@ -65,3 +65,32 @@ def save_job():
     db.session.add(saved)
     db.session.commit()
     return jsonify({"message": "Successfully saved job"}), 201
+
+@auth_bp.route('/saved-jobs', methods=['GET'])
+@jwt_required()
+def get_saved_jobs():
+    current_user_id = get_jwt_identity()
+    saved_jobs = SavedJob.query.filter_by(user_id=current_user_id).all()
+    
+    results = []
+    for job in saved_jobs:
+        analysis = job.analysis
+        scores = json.loads(analysis.scores_json)
+        # return basic essential info for the table
+        job_title = "Saved Job Match"
+        if getattr(analysis, 'role', None):
+            pass # In future we could extract real role title
+        elif analysis.job_description:
+            # simple extract
+            jd_start = analysis.job_description[:100].split('\n')[0]
+            job_title = jd_start if len(jd_start) > 5 else "Saved Job Match"
+            
+        results.append({
+            "id": analysis.id,
+            "jobName": job_title,
+            "overallScore": scores.get("overall", 0),
+            "date": job.created_at.strftime("%Y-%m-%d")
+        })
+        
+    return jsonify(results), 200
+

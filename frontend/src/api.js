@@ -88,3 +88,12 @@ export const rewriteBullets = async (analysisId) => {
     if (!response.ok) throw new Error('Failed to rewrite bullets');
     return response.json();
 };
+
+export const fetchSavedJobs = async () => {
+    const response = await fetch(`${API_BASE}/auth/saved-jobs`, {
+        headers: getHeaders()
+    });
+    if (!response.ok) throw new Error('Failed to fetch saved jobs');
+    return response.json();
+};
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TopHeader from './components/TopHeader';
 import MainDashboard from './components/MainDashboard';
 import LoginModal from './components/LoginModal';
+import SavedJobsModal from './components/SavedJobsModal';
 import { analyzeResume, verifySession } from './api';
 import { UploadCloud, ArrowRight } from 'lucide-react';
 import './App.css';
@@ -16,6 +17,7 @@ function App() {
   // Auth State
   const [user, setUser] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSavedJobsModal, setShowSavedJobsModal] = useState(false);
 
   useEffect(() => {
     // Check session on mount
@@ -67,6 +69,7 @@ function App() {
            {user ? (
                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                    <span style={{ fontWeight: 500, fontSize: '0.9rem' }}>Welcome, {user.username || user.email}</span>
+                   <button onClick={() => setShowSavedJobsModal(true)} className="btn btn-secondary" style={{ background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }}>Saved Jobs</button>
                    <button onClick={handleLogout} className="btn btn-secondary">Log Out</button>
                </div>
            ) : (
@@ -106,6 +109,7 @@ function App() {
         </div>
         
         {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onSuccess={handleLoginSuccess} />}
+        {showSavedJobsModal && <SavedJobsModal onClose={() => setShowSavedJobsModal(false)} />}
       </div>
     );
   }
@@ -113,7 +117,7 @@ function App() {
   return (
     <div className="app-wrapper fade-in">
       <div className="app-container">
-        <TopHeader onBack={() => setShowDashboard(false)} user={user} onLogout={handleLogout} />
+        <TopHeader onBack={() => setShowDashboard(false)} user={user} onLogout={handleLogout} onShowSavedJobs={() => setShowSavedJobsModal(true)} />
         <div className="main-content-wrapper">
           <MainDashboard 
             analysisResult={analysisResult} 
@@ -124,6 +128,7 @@ function App() {
         </div>
       </div>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onSuccess={handleLoginSuccess} />}
+      {showSavedJobsModal && <SavedJobsModal onClose={() => setShowSavedJobsModal(false)} />}
     </div>
   );
 }
