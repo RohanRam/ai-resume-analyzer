@@ -21,6 +21,8 @@ CORS(app)
 database_url = os.environ.get('DATABASE_URL', 'sqlite:///local.db')
 if database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql+pg8000://", 1)
+elif database_url.startswith("postgresql://") and not database_url.startswith("postgresql+pg8000://"):
+    database_url = database_url.replace("postgresql://", "postgresql+pg8000://", 1)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
