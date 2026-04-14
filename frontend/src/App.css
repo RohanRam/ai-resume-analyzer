@@ -1,0 +1,376 @@
+.app-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.app-container {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 1100px;
+  height: clamp(600px, 85vh, 900px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.dashboard-layout {
+  display: flex;
+  flex: 1;
+  padding: 2rem 3rem;
+  gap: 3rem;
+}
+
+.dashboard-center {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-right {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Top Header */
+.top-header {
+  height: 80px;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Search bar & filter chips (mockup style) */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: #f1f5f9;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-chip.active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.job-header h1 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.job-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: #f8fafc;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Score Panel */
+.score-panel {
+  display: flex;
+  background-color: #f8fafc;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  gap: 2rem;
+  align-items: center;
+}
+
+.score-panel-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.metrics-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.metric-label {
+  width: 80px;
+  color: var(--text-secondary);
+}
+
+.metric-bar-bg {
+  flex: 1;
+  height: 4px;
+  background-color: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.metric-value {
+  width: 20px;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* Strengths Section */
+.strengths-section h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.strengths-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.strength-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.strength-icon {
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+/* Right Panel Elements */
+.right-section h3 {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.action-list {
+  background-color: #f8fafc;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.action-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s;
+  cursor: pointer;
+  background: white;
+}
+
+.action-item:last-child {
+  border-bottom: none;
+}
+
+.action-item:hover {
+  background: #f1f5f9;
+}
+
+.action-item svg {
+  color: var(--text-secondary);
+}
+
+.evidence-box {
+  background-color: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--primary);
+}
+
+/* Landing Page Styles */
+.landing-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.landing-content {
+  background: var(--surface-color);
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.landing-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.landing-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.resume-upload-zone {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.resume-upload-zone:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.resume-upload-zone input[type="file"] {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0; cursor: pointer;
+}
+
+/* Print CSS for Export PDF */
+@media print {
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .app-wrapper {
+    padding: 0;
+    min-height: auto;
+  }
+  .app-container {
+    box-shadow: none;
+    height: auto;
+    max-width: 100%;
+  }
+  .top-header,
+  .action-buttons,
+  .action-list {
+    display: none !important;
+  }
+  .dashboard-layout {
+    padding: 0;
+  }
+}
