@@ -58,6 +58,11 @@ function App() {
   const handleLogout = () => {
       localStorage.removeItem('token');
       setUser(null);
+      setShowDashboard(false);
+      setJobDescription("");
+      setResumeFile(null);
+      setAnalysisResult(null);
+      setShowSavedJobsInline(false);
   };
 
   if (!showDashboard) {
