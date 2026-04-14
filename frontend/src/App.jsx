@@ -69,7 +69,6 @@ function App() {
            {user ? (
                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                    <span style={{ fontWeight: 500, fontSize: '0.9rem' }}>Welcome, {user.username || user.email}</span>
-                   <button onClick={() => setShowSavedJobsModal(true)} className="btn btn-secondary" style={{ background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }}>Saved Jobs</button>
                    <button onClick={handleLogout} className="btn btn-secondary">Log Out</button>
                </div>
            ) : (
