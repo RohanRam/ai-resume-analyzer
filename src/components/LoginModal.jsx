@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { login, registerUser } from '../api';
 import { X } from 'lucide-react';
+import { toast } from 'sonner';
 
 const LoginModal = ({ onClose, onSuccess }) => {
     const [isLogin, setIsLogin] = useState(true);
@@ -24,13 +25,20 @@ const LoginModal = ({ onClose, onSuccess }) => {
         try {
             if (isLogin) {
                 const data = await login(email, password);
+                toast.success('Successfully logged in!');
                 onSuccess(data.user, data.access_token);
             } else {
                 const data = await registerUser(username, email, password);
+                toast.success('Successfully registered!');
                 onSuccess(data.user, data.access_token);
             }
         } catch (err) {
-            setError(err.message || 'Authentication failed');
+            let errorMsg = err.message || 'Authentication failed';
+            if (isLogin && errorMsg.toLowerCase().includes('bad username')) {
+                errorMsg = "Invalid credentials. Please register first if you don't have an account.";
+            }
+            setError(errorMsg);
+            toast.error(errorMsg);
         } finally {
             setLoading(false);
         }
@@ -42,7 +50,7 @@ const LoginModal = ({ onClose, onSuccess }) => {
                 <button onClick={onClose} style={{ position: 'absolute', top: '1rem', right: '1rem', color: 'var(--text-secondary)' }}>
                     <X size={20} />
                 </button>
-                <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{isLogin ? 'Log In to Enterprise' : 'Create Account'}</h2>
+                <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
                 {error && <p style={{ color: 'var(--danger)', fontSize: '0.85rem', marginBottom: '1rem' }}>{error}</p>}
                 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

@@ -4,6 +4,7 @@ import MainDashboard from './components/MainDashboard';
 import LoginModal from './components/LoginModal';
 import { analyzeResume, verifySession } from './api';
 import { UploadCloud, ArrowRight } from 'lucide-react';
+import { Toaster, toast } from 'sonner';
 import './App.css';
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
         </div>
         
         {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onSuccess={handleLoginSuccess} />}
+        <Toaster position="top-center" richColors />
       </div>
     );
   }
@@ -135,6 +137,7 @@ function App() {
         </div>
       </div>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onSuccess={handleLoginSuccess} />}
+      <Toaster position="top-center" richColors />
     </div>
   );
 }
