@@ -6,7 +6,7 @@ import { Search, ChevronDown, X } from 'lucide-react';
 import { saveJobInstance } from '../api';
 import SavedJobsList from './SavedJobsList';
 
-const MainDashboard = ({ analysisResult, isLoading, user, onRequireLogin }) => {
+const MainDashboard = ({ analysisResult, isLoading, user, onRequireLogin, showSavedJobsInline }) => {
   const [copyText, setCopyText] = useState('Copy link');
   const [saveState, setSaveState] = useState('Save job');
 
@@ -106,8 +106,8 @@ const MainDashboard = ({ analysisResult, isLoading, user, onRequireLogin }) => {
             </div>
         </div>
         
-        {/* Saved Jobs List rendered underneath the strengths section */}
-        <SavedJobsList user={user} />
+        {/* Saved Jobs List rendered underneath the strengths section conditionally */}
+        {showSavedJobsInline && <SavedJobsList user={user} />}
       </div>
       
       {/* Right Content */}

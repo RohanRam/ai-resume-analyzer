@@ -15,6 +15,7 @@ function App() {
   
   const [user, setUser] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSavedJobsInline, setShowSavedJobsInline] = useState(false);
 
   useEffect(() => {
     // Check session on mount
@@ -112,13 +113,19 @@ function App() {
   return (
     <div className="app-wrapper fade-in">
       <div className="app-container">
-        <TopHeader onBack={() => setShowDashboard(false)} user={user} onLogout={handleLogout} />
+        <TopHeader 
+          onBack={() => setShowDashboard(false)} 
+          user={user} 
+          onLogout={handleLogout} 
+          onShowSavedJobs={() => setShowSavedJobsInline(true)}
+        />
         <div className="main-content-wrapper">
           <MainDashboard 
             analysisResult={analysisResult} 
             isLoading={isLoading} 
             user={user}
             onRequireLogin={() => setShowLoginModal(true)}
+            showSavedJobsInline={showSavedJobsInline}
           />
         </div>
       </div>
