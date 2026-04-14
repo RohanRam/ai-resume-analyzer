@@ -4,6 +4,7 @@ import MetricsPanel from './MetricsPanel';
 import ActionPanel from './ActionPanel';
 import { Search, ChevronDown, X } from 'lucide-react';
 import { saveJobInstance } from '../api';
+import SavedJobsList from './SavedJobsList';
 
 const MainDashboard = ({ analysisResult, isLoading, user, onRequireLogin }) => {
   const [copyText, setCopyText] = useState('Copy link');
@@ -104,6 +105,9 @@ const MainDashboard = ({ analysisResult, isLoading, user, onRequireLogin }) => {
                )}
             </div>
         </div>
+        
+        {/* Saved Jobs List rendered underneath the strengths section */}
+        <SavedJobsList user={user} />
       </div>
       
       {/* Right Content */}

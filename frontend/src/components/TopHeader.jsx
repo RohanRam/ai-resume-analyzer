@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ArrowLeft } from 'lucide-react';
 
-const TopHeader = ({ onBack, user, onLogout, onShowSavedJobs }) => {
+const TopHeader = ({ onBack, user, onLogout }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const displayName = user ? (user.username || user.email) : 'User';
 
@@ -33,12 +33,6 @@ const TopHeader = ({ onBack, user, onLogout, onShowSavedJobs }) => {
             
             {showDropdown && user && (
                 <div style={{ position: 'absolute', top: '100%', right: 0, marginTop: '0.5rem', background: 'white', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-md)', width: '150px', zIndex: 100 }}>
-                    <button 
-                        onClick={() => { setShowDropdown(false); onShowSavedJobs && onShowSavedJobs(); }} 
-                        style={{ width: '100%', textAlign: 'left', padding: '0.75rem 1rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-color)' }}
-                    >
-                        Saved Jobs
-                    </button>
                     <button 
                         onClick={() => { setShowDropdown(false); onLogout && onLogout(); }} 
                         style={{ width: '100%', textAlign: 'left', padding: '0.75rem 1rem', background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--danger)' }}

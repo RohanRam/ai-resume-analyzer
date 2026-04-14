@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import TopHeader from './components/TopHeader';
 import MainDashboard from './components/MainDashboard';
 import LoginModal from './components/LoginModal';
-import SavedJobsModal from './components/SavedJobsModal';
 import { analyzeResume, verifySession } from './api';
 import { UploadCloud, ArrowRight } from 'lucide-react';
 import './App.css';
@@ -14,10 +13,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   
-  // Auth State
   const [user, setUser] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSavedJobsModal, setShowSavedJobsModal] = useState(false);
 
   useEffect(() => {
     // Check session on mount
@@ -108,7 +105,6 @@ function App() {
         </div>
         
         {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onSuccess={handleLoginSuccess} />}
-        {showSavedJobsModal && <SavedJobsModal onClose={() => setShowSavedJobsModal(false)} />}
       </div>
     );
   }
@@ -116,7 +112,7 @@ function App() {
   return (
     <div className="app-wrapper fade-in">
       <div className="app-container">
-        <TopHeader onBack={() => setShowDashboard(false)} user={user} onLogout={handleLogout} onShowSavedJobs={() => setShowSavedJobsModal(true)} />
+        <TopHeader onBack={() => setShowDashboard(false)} user={user} onLogout={handleLogout} />
         <div className="main-content-wrapper">
           <MainDashboard 
             analysisResult={analysisResult} 
@@ -127,7 +123,6 @@ function App() {
         </div>
       </div>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onSuccess={handleLoginSuccess} />}
-      {showSavedJobsModal && <SavedJobsModal onClose={() => setShowSavedJobsModal(false)} />}
     </div>
   );
 }
