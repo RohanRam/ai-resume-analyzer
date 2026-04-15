@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { generateSummary, rewriteBullets } from '../api';
+import { toast } from 'sonner';
 
 const ActionPanel = ({ insights, analysisId }) => {
   const [generations, setGenerations] = useState({});
@@ -49,7 +50,7 @@ const ActionPanel = ({ insights, analysisId }) => {
           <span>{loadingAction === 'bullets' ? 'Generating...' : 'Rewrite CV bullets'}</span>
           <ArrowRight size={14} />
         </div>
-        <div className="action-item" onClick={() => alert("Reordering logic requires CV struct data.")}>
+        <div className="action-item" onClick={() => toast.info("COMING SOON")}>
           <span style={{ color: 'var(--text-secondary)' }}>Reorder portfolio</span>
           <ArrowRight size={14} color="var(--border-color)" />
         </div>
