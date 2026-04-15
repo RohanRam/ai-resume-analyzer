@@ -69,45 +69,76 @@ function App() {
   if (!showDashboard) {
     return (
       <div className="landing-container fade-in">
-        <div className="top-nav-bar" style={{ position: 'absolute', top: '2rem', right: '2rem' }}>
+        <nav className="landing-nav">
+          <div className="nav-brand">
+             <img src="/resume4.png" alt="AI Resume" className="brand-logo-img" />
+             <span className="brand-text">Resume Analyzer</span>
+          </div>
+          <div className="nav-actions">
            {user ? (
-               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                   <span style={{ fontWeight: 500, fontSize: '0.9rem' }}>Welcome, {user.username || user.email}</span>
-                   <button onClick={handleLogout} className="btn btn-secondary">Log Out</button>
+               <div className="user-profile">
+                   <span className="welcome-text">Welcome, <strong>{user.username || user.email}</strong></span>
+                   <button onClick={handleLogout} className="btn-outline">Log Out</button>
                </div>
            ) : (
-               <button onClick={() => setShowLoginModal(true)} className="btn btn-secondary">Login</button>
+               <button onClick={() => setShowLoginModal(true)} className="btn-outline">Login</button>
            )}
-        </div>
+          </div>
+        </nav>
       
-        <div className="landing-content" style={{ maxWidth: '800px' }}>
-          <div className="landing-header">
-            <h1 className="landing-title">AI Resume Analyzer</h1>
-            <p className="landing-subtitle">Compare your resume against any job description to discover your true match score and improvement areas.</p>
+        <div className="landing-split-layout">
+          <div className="landing-hero">
+            <div className="pill-badge">✨ Powered by AI</div>
+            <h1 className="hero-title">
+              Unlock Your <br/>
+              <span className="text-gradient">Career Potential</span>
+            </h1>
+            <p className="hero-subtitle">
+              Intelligently match your resume against any job description. Uncover your true score, identify missing skills, and instantly stand out.
+            </p>
+            <div className="hero-features">
+               <div className="feature"><div className="icon-circle">✓</div> Free Analysis</div>
+               <div className="feature"><div className="icon-circle">✓</div> Deep Insights</div>
+               <div className="feature"><div className="icon-circle">✓</div> Fast Results</div>
+            </div>
           </div>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--text-primary)' }}>Target Job Description</label>
-              <textarea 
-                placeholder="Paste the job description here..." value={jobDescription} onChange={(e) => setJobDescription(e.target.value)}
-                style={{ width: '100%', minHeight: '150px', padding: '1rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', fontFamily: 'inherit', resize: 'vertical' }}
-              />
+          <div className="landing-form-glass">
+            <div className="form-head">
+              <h2>Start Analyzing</h2>
+              <p>Upload your resume and target job.</p>
             </div>
-            <div>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--text-primary)' }}>Your Resume</label>
-              <div className="resume-upload-zone" style={{ padding: '2rem 1rem' }}>
-                <UploadCloud size={40} className="upload-icon" />
-                <div>
-                  <p style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.1rem', marginBottom: '0.25rem' }}>{resumeFile ? resumeFile.name : 'Click or Drag & Drop'}</p>
-                  <p style={{ color: 'var(--text-secondary)' }}>Supports .pdf, .txt, .docx</p>
-                </div>
-                <input type="file" accept=".pdf,.txt,.docx" onChange={(e) => { if (e.target.files && e.target.files[0]) setResumeFile(e.target.files[0]); }} />
+            
+            <div className="modern-form">
+              <div className="input-group">
+                <label>Target Job Description</label>
+                <textarea 
+                  className="modern-textarea"
+                  placeholder="Paste the job requirements here..." 
+                  value={jobDescription} 
+                  onChange={(e) => setJobDescription(e.target.value)}
+                />
               </div>
+              <div className="input-group">
+                <label>Your Resume</label>
+                <div className={`modern-dropzone ${resumeFile ? 'has-file' : ''}`}>
+                  <UploadCloud size={28} className="drop-icon" />
+                  <div className="drop-content">
+                    <p className="drop-title">{resumeFile ? resumeFile.name : 'Click or Drag & Drop File'}</p>
+                    <p className="drop-sub">Supports .pdf, .txt, .docx</p>
+                  </div>
+                  <input type="file" accept=".pdf,.txt,.docx" onChange={(e) => { if (e.target.files && e.target.files[0]) setResumeFile(e.target.files[0]); }} />
+                </div>
+              </div>
+              <button 
+                onClick={handleAnalyze} 
+                disabled={!jobDescription || !resumeFile} 
+                className="modern-submit-btn"
+              >
+                <span>Analyze Match</span>
+                <div className="btn-icon"><ArrowRight size={18} /></div>
+              </button>
             </div>
-            <button onClick={handleAnalyze} disabled={!jobDescription || !resumeFile} className="btn btn-primary" style={{ justifyContent: 'center', marginTop: '1rem', opacity: (!jobDescription || !resumeFile) ? 0.5 : 1, width: '100%', padding: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-              Analyze Match <ArrowRight size={18} />
-            </button>
           </div>
         </div>
         

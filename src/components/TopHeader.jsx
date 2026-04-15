@@ -13,6 +13,7 @@ const TopHeader = ({ onBack, user, onLogout, onShowSavedJobs }) => {
             <ArrowLeft size={20} />
           </button>
         )}
+        <img src="/resume4.png" alt="AI Resume Logo" style={{ width: 30, height: 30, marginRight: '0.75rem', objectFit: 'contain' }} />
         AI Resume & Portfolio Matcher
       </div>
       
